@@ -22,7 +22,7 @@ class PegawaiController extends Controller
         if ($current_semester < 3) {
             $message = "Masih Awal, Kejar TAK";
         } else {
-            $message = "whatever people say, keep going";
+            $message = "whatever people say, keep going and never give up";
         }
         return view('pegawai', [
             "name" => $name,
