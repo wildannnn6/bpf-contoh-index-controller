@@ -34,9 +34,6 @@ class PegawaiController extends Controller
             "message" => $message,
             "future_goal" => $future_goal
         ]);
-
-
-        return view('home', $data );
     }
 
     /**
