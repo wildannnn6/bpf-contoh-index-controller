@@ -7,6 +7,8 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\PegawaiController;
+route::resource('/pegawai', PegawaiController::class);
+
 
 Route::get('/nama/{param1}', function ($param1) {
     return 'Nama saya: '.$param1;
@@ -33,4 +35,4 @@ Route::get('/about', function () {
 
 route::get('/home', [HomeController::class, 'index']);
 
-route::resource('/pegawai', PegawaiController::class);
+
