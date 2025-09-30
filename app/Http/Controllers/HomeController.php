@@ -69,7 +69,7 @@ class HomeController extends Controller
     /**
      * Show the application signup form.
      */
-      public function signup(Request $request): View
+      public function signup(Request $request)
   {
 
     $request->validate([

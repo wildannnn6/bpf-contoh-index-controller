@@ -38,11 +38,15 @@ Route::get('/about', function () {
 
 route::get('/home', [HomeController::class, 'index']);
 
+
+
 route:: get('/signup', [HomeController::class, 'signup']);
 
 Route::get('/login', function () {
     return view('simple-home');
 });
+
+
 
 Route::get('/home/signup',[HomeController::class,'index']);
 Route::get('/auth',[AuthController::class,'index']);
