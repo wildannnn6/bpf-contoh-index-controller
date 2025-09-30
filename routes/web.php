@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MahasiswaController;
 
+use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\PegawaiController;
+
 route::resource('/pegawai', PegawaiController::class);
 
 
@@ -34,5 +37,18 @@ Route::get('/about', function () {
 
 
 route::get('/home', [HomeController::class, 'index']);
+
+route:: get('/signup', [HomeController::class, 'signup']);
+
+Route::get('/login', function () {
+    return view('simple-home');
+});
+
+Route::get('/home/signup',[HomeController::class,'index']);
+Route::get('/auth',[AuthController::class,'index']);
+
+Route::post('/home/signup',[HomeController::class,'signup']);
+Route::post('/auth/login',[AuthController::class,'login']);
+
 
 
