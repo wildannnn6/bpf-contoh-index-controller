@@ -48,11 +48,9 @@ Route::get('/login', function () {
 
 
 
-Route::get('/home/signup',[HomeController::class,'index']);
-Route::get('/auth',[AuthController::class,'index']);
-
-Route::post('/home/signup',[HomeController::class,'signup']);
-Route::post('/auth/login',[AuthController::class,'login']);
+Route::get('/home',[HomeController::class,'index'])->name('home');
+// Route::get('/auth',[AuthController::class,'login']);
+Route::get('/auth',[AuthController::class,'index'])->name('auth');
 
 
-
+Route::get('/go/{tujuan}',[HomeController::class,'redirectTo'])->name('go');

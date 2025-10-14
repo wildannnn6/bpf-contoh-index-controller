@@ -79,6 +79,12 @@
         </div>
     </nav>
 
+    @if (session('info'))
+    <div class="alert alert-success">
+        {{ session('info') }}
+    </div>
+@endif
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -165,16 +171,13 @@
                 </div>
 
                 {{-- Buttons --}}
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="h5 mb-3">Buttons</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-primary">Primary</button>
-                            <button class="btn btn-secondary">Secondary</button>
-                            <button class="btn btn-outline-primary">Outline</button>
-                            <button class="btn btn-success">Success</button>
-                            <button class="btn btn-danger">Danger</button>
-                        </div>
+               <div class="card">
+                <div class="card-body">
+                    <h3 class="h5 mb-3">Buttons</h3>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ route('go', 'login') }}" class="btn btn-primary">Go to Login</a>
+                        <a href="{{ route('go', 'belanja') }}" class="btn btn-success">Go to E-Commerce</a>
+                        <a href="{{ route('go', 'home') }}" class="btn btn-outline-secondary">Go Home</a>
                     </div>
                 </div>
 

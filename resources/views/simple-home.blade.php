@@ -17,6 +17,12 @@
     </div>
 @endif
 
+  @if (session('info'))
+    <div class="alert alert-info">
+        {{ session('status') }}
+    </div>
+    @endif
+
 <form action="/signup" method="GET">
 	@csrf
     <div class="mb-3">

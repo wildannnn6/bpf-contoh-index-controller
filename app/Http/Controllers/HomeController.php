@@ -26,6 +26,7 @@ class HomeController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -93,4 +94,18 @@ class HomeController extends Controller
       return view('signup-success', $pageData);
 
   }
+
+      public function redirectTo($tujuan)
+    {
+        $tujuan = strtolower($tujuan);
+        if ($tujuan === 'login') {
+            return redirect()->route('auth');
+        } elseif ($tujuan === 'belanja') {
+            return redirect()->away('https://www.tokopedia.com');
+        } else {
+            return redirect()->route('home')->with('info', 'Selamat Datang.');
+        }
+    }
+
 }
+
