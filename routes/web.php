@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\PegawaiController;
 
+use App\Http\Controllers\DashboardController;
+
 route::resource('/pegawai', PegawaiController::class);
 
 
@@ -54,3 +56,6 @@ Route::get('/auth',[AuthController::class,'index'])->name('auth');
 
 
 Route::get('/go/{tujuan}',[HomeController::class,'redirectTo'])->name('go');
+
+
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
