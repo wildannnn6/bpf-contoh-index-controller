@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MahasiswaController;
@@ -59,3 +60,9 @@ Route::get('/go/{tujuan}',[HomeController::class,'redirectTo'])->name('go');
 
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan.list');
+
+Route::get('pelanggan/create', [PelangganController::class, 'create'])->name('pelanggan.create');
+
+Route::post('pelanggan/store', [PelangganController::class, 'store'])->name('pelanggan.store');
