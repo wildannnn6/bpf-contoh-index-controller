@@ -59,10 +59,13 @@ Route::get('/auth',[AuthController::class,'index'])->name('auth');
 Route::get('/go/{tujuan}',[HomeController::class,'redirectTo'])->name('go');
 
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan.list');
-
 Route::get('pelanggan/create', [PelangganController::class, 'create'])->name('pelanggan.create');
 
 Route::post('pelanggan/store', [PelangganController::class, 'store'])->name('pelanggan.store');
+Route::get('pelanggan/edit/{param1}', [PelangganController::class, 'edit'])->name('pelanggan.edit');
+
+Route::post('pelanggan/update/', [PelangganController::class, 'update'])->name('pelanggan.update');
+
+Route::get('pelanggan/destroy/{param1}', [PelangganController::class, 'destroy'])->name('pelanggan.destroy');

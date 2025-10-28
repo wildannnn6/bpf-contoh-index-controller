@@ -377,11 +377,11 @@
                         </li>
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('pelanggan.list') }}"> Pelanggan </a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Tambah Data</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
                     </ol>
                 </nav>
-                <h2 class="h4">Tambah Data Pelanggan</h2>
-                <p class="mb-0">Form tambah data pelanggan baru.</p>
+                <h2 class="h4">Edit Pelanggan</h2>
+                <p class="mb-0">Form perubahan data pelanggan.</p>
             </div>
             <div class="btn-toolbar mb-2 mb-md-0">
                 <a href="{{ route('pelanggan.list') }}"
@@ -395,30 +395,31 @@
                 </div>
             </div>
         </div>
-
-        @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Berhasil!</strong> {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-
-        @endif
         {{-- form --}}
         <div class="card card-body border-0 shadow mb-4">
             <h2 class="h5 mb-4">General information</h2>
-            <form action="{{ route('pelanggan.store') }}" method="POST">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <form action="{{ route('pelanggan.update') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div>
                             <label for="first_name">First Name</label>
-                            <input class="form-control" name="first_name" id="first_name" type="text" placeholder="Enter your first name" required>
+                            <input class="form-control" value="{{ $dataPelanggan->first_name }}" name="first_name" id="first_name" type="text" placeholder="Enter your first name" required>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div>
                             <label for="last_name">Last Name</label>
-                            <input class="form-control" name="last_name" id="last_name" type="text" placeholder="Also your last name" required>
+                            <input class="form-control" value="{{ $dataPelanggan->last_name }}" name="last_name" id="last_name" type="text" placeholder="Also your last name" required>
                         </div>
                     </div>
                 </div>
@@ -434,43 +435,37 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </span>
-                            <input data-datepicker="" class="form-control" name="birthday" id="birthday" type="text" placeholder="dd/mm/yyyy"
+                            <input data-datepicker="" value="{{ $dataPelanggan->birthday }}" class="form-control" name="birthday" id="birthday" type="text" placeholder="dd/mm/yyyy"
                                 required>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="gender">Gender</label>
-                        <select class="form-select mb-0 @error('gender') is-invalid @enderror" name="gender" id="gender"
-                            aria-label="Gender select example">
-                            <option value="" {{ old('gender')=='' ? 'selected' : '' }}>Gender</option>
-                            <option value="Female" {{ old('gender')=='Female' ? 'selected' : '' }}>Female</option>
-                            <option value="Male" {{ old('gender')=='Male' ? 'selected' : '' }}>Male</option>
+                        <select class="form-select mb-0" id="gender" name="gender" aria-label="Gender select example">
+                            <option selected>Gender</option>
+                            <option value="Female" {{ ($dataPelanggan->gender == 'Female') ? 'selected' : '' }}>Female</option>
+                            <option value="Male" {{ ($dataPelanggan->gender == 'Male') ? 'selected' : '' }}>Male</option>
                         </select>
-
-                        @error('gender')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input class="form-control" name="email" id="email" type="email" placeholder="name@company.com" required>
+                            <input class="form-control" value="{{ $dataPelanggan->email }}" name="email" id="email" type="email" placeholder="name@company.com" required>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input class="form-control" name="phone" id="phone" type="number" placeholder="+12-345 678 910" required>
+                            <input class="form-control" value="{{ $dataPelanggan->phone }}" name="phone" id="phone" type="number" placeholder="+12-345 678 910" required>
                         </div>
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button class="btn btn-success text-white mt-2 animate-up-2" type="submit">Save all</button>
+                    <button class="btn btn-info text-white mt-2 animate-up-2" type="submit">Simpan Perubahan</button>
                 </div>
+                <input type="hidden" name="pelanggan_id" value="{{ $dataPelanggan->pelanggan_id}}" />
             </form>
         </div>
 
